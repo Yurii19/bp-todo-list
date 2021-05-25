@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.task-container {
+  transition: .3s;
+  width: 200px;
+  height: 90px;
+  cursor: pointer;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 15px;
+  align-items: flex-start;
+}
+.task-container > span {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.task-container >p {
+  overflow: hidden;
+}
+.task-container > i {
+  font-size: 0.8em;
+  /* font-weight: 600; */
+}
+.add-new-task {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+}
+.modal-container{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  padding: 10px 0 10px 0;
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px;
+  position: absolute;
+  background-color: white;
+  left: 35%;
+}
+.label-wrapper {
+  /* border: 1px solid red; */
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* min-width: 300px; */
+  font-weight: 600;
+  width: 100%;
+}
+.label-wrapper *{
+  width: 100%;
+  padding: 5px;
+}
+.modal-control {
+  /* border: 1px solid red; */
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.modal-control * {
+  border: 1px solid black;
+  padding: 4px 10px 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-control *:active{
+  background-color: rgba(0, 0, 0, .1);
+}
+.fail {
+  box-shadow: 0 0 10px 0 red;
+}
+.add-sign {
+  display: inline-block;
+  width: 10px;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+/* .task-container:hover{
+  width: 500px;
+  height: '';
+  transition: .3s;
+} */
