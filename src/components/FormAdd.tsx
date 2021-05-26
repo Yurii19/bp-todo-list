@@ -33,23 +33,7 @@ const FormAdd = (props: IFormProps) => {
     [taskDeadline]
   );
 
-  // const remowErrorStyle = useCallback(
-  //   (ev: FormEvent<HTMLInputElement>) => {
-  //     const modalContainer = formRef.current;
-  //     if (modalContainer) {
-  //       modalContainer.classList.remove("fail");
-  //     }
-
-  //   },
-  //   [taskDeadline]
-  // );
-
   const makeTask = useCallback(() => {
-    const modalContainer = formRef.current;
-    if (modalContainer && (!taskName || !taskDesk || !taskDeadline)) {
-      modalContainer.classList.add("fail");
-    }
-
     if (taskName && taskDesk && taskDeadline) {
       const newTask: ITaskProps = {
         id: props.dataSize,
