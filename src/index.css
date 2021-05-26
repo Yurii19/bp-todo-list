@@ -11,27 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.tasks-container{
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+}
+.tasks-container > div {
+  width: 40%;
+}
 .task-container {
   transition: .3s;
-  width: 200px;
-  height: 90px;
+  width: 100%;
   cursor: pointer;
-  border: 1px solid red;
+  background-color: rgba(0, 0, 0, .1);
   display: flex;
   flex-direction: column;
   padding: 5px 5px 5px 15px;
   align-items: flex-start;
+  margin: 1px;
 }
 .task-container > span {
   font-size: 1.1em;
   font-weight: 600;
 }
-.task-container >p {
-  overflow: hidden;
-}
+
 .task-container > i {
   font-size: 0.8em;
-  /* font-weight: 600; */
+}
+.task-header{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+}
+.task-done {
+  box-shadow: inset 0 0 10px 0 green;
+}
+.button-task-done {
+  background-color: seagreen !important;
 }
 .add-new-task {
   padding: 10px;
@@ -54,15 +71,13 @@ code {
   padding: 10px;
   position: absolute;
   background-color: white;
-  left: 35%;
+  left: 34%;
 }
 .label-wrapper {
-  /* border: 1px solid red; */
   margin-top: 15px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* min-width: 300px; */
   font-weight: 600;
   width: 100%;
 }
@@ -71,7 +86,6 @@ code {
   padding: 5px;
 }
 .modal-control {
-  /* border: 1px solid red; */
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
@@ -95,8 +109,19 @@ code {
   font-size: 1.3em;
   font-weight: 600;
 }
-/* .task-container:hover{
-  width: 500px;
-  height: '';
-  transition: .3s;
-} */
+.task-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+.task-controls > button {
+  margin-left: 3px;
+}
+.select-filter {
+  display: flex;
+  align-items: center;
+  
+}
+.body-controls {
+  display: flex;
+  justify-content: space-around;
+}

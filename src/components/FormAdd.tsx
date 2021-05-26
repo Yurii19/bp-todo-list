@@ -1,19 +1,12 @@
 import React, { FormEvent, useState, useCallback, useRef } from "react";
 import { ITaskProps } from "./Task";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-// export interface ITaskProps {
-//   name: string;
-//   description: string;
-//   deadline: string;
-//   isDone: boolean;
-// }
 interface IFormProps {
   dataSize: number;
 }
 
 const FormAdd = (props: IFormProps) => {
-  console.log(props);
   const [taskName, setName] = useState("");
   const [taskDesk, setDesk] = useState("");
   const [taskDeadline, setDeadline] = useState("");
@@ -36,83 +29,54 @@ const FormAdd = (props: IFormProps) => {
   const inputDate = useCallback(
     (ev: FormEvent<HTMLInputElement>) => {
       setDeadline(ev.currentTarget.value);
-      // console.log(' -> '+ev.currentTarget.value)
     },
     [taskDeadline]
   );
 
-  const remowErrorStyle = useCallback(
-    (ev: FormEvent<HTMLInputElement>) => {
-      const modalContainer = formRef.current;
-      if (modalContainer) {
-        modalContainer.classList.remove("fail");
-      }
+  // const remowErrorStyle = useCallback(
+  //   (ev: FormEvent<HTMLInputElement>) => {
+  //     const modalContainer = formRef.current;
+  //     if (modalContainer) {
+  //       modalContainer.classList.remove("fail");
+  //     }
 
-      // console.log(' -> '+ev.currentTarget.value)
-    },
-    [taskDeadline]
-  );
+  //   },
+  //   [taskDeadline]
+  // );
 
   const makeTask = useCallback(() => {
-    // const newTask: ITaskProps = {
-    //   name: "...",
-    //   description: "...",
-    //   deadline: "...",
-    //   isDone: false,
-    // };
-
-    //  const isDataValid = taskName && taskDesk && taskDeadline;
-
     const modalContainer = formRef.current;
-    console.log("- ");
     if (modalContainer && (!taskName || !taskDesk || !taskDeadline)) {
       modalContainer.classList.add("fail");
     }
 
     if (taskName && taskDesk && taskDeadline) {
-      //console.log(`${taskName} -> ${taskDesk} -> ${taskDeadline}`);
-      //const id =
       const newTask: ITaskProps = {
-        id: 1,
+        id: props.dataSize,
         name: taskName,
         description: taskDesk,
         deadline: taskDeadline,
         isDone: false,
       };
       dispatchAddTask({ type: "ADD_TASK", payload: newTask });
+      setName("");
+      setDesk("");
+      setDeadline("");
     }
   }, [taskName, taskDesk, taskDeadline]);
-  // const makeTask = () => {
-  //   const newTask: ITaskProps = {
-  //     name: "...",
-  //     description: "...",
-  //     deadline: "...",
-  //     isDone: false,
-  //   };
-
-  //   //  const isDataValid = taskName && taskDesk && taskDeadline;
-
-  //   const modalContainer = formRef.current;
-  //   console.log("- ");
-  //   if (modalContainer && (!taskName || !taskDesk || !taskDeadline)) {
-  //     modalContainer.classList.add("fail");
-  //   }
-
-  //   if (taskName && taskDesk && taskDeadline) {
-  //     console.log(`${taskName} -> ${taskDesk} -> ${taskDeadline}`);
-  //   }
-  // };
 
   return (
     <div className="modal-container" ref={formRef}>
       <span>Input values</span>
+      <form action="">
       <label className="label-wrapper">
         Name
-        <input type="text" value={taskName} onChange={inputName} />
+        <input type="text" value={taskName} onChange={inputName} required />
       </label>
       <label className="label-wrapper">
         Description
         <textarea
+        required
           rows={5}
           cols={30}
           value={taskDesk}
@@ -121,16 +85,18 @@ const FormAdd = (props: IFormProps) => {
       </label>
       <label className="label-wrapper">
         Deadline
-        <input type="date" onChange={inputDate} />
+        <input type="date" value={taskDeadline} onChange={inputDate} required/>
       </label>
       <div className="modal-control">
         <input
-          type="button"
+          type="submit"
           value="add"
           onClick={makeTask}
-          onBlur={remowErrorStyle}
         />
       </div>
+      
+      
+      </form>
     </div>
   );
 };
